@@ -5,7 +5,7 @@ void main() {
 }
 
 const Color azulMarino = Color(0xFF172744);
-const Color grisFondo = Color(0xFFF7F8FA);
+//const Color grisFondo = Color(0xFFF7F8FA);
 const Color rosa = Color(0xFFE94E77);
 
 class CatalogoApp extends StatelessWidget {
@@ -15,12 +15,201 @@ class CatalogoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Mi catálogo',
-      theme: ThemeData(
-        scaffoldBackgroundColor: grisFondo,
-        useMaterial3: true,
+      title: 'Movie Archive',
+      home: const InicioPage(),
+    );
+  }
+}
+
+class InicioPage extends StatelessWidget {
+  const InicioPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Imagen de fondo
+          Image.asset('assets/images/fondo.jpg', fit: BoxFit.fill),
+
+          // Contenido de la pantalla
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 35),
+
+                    const Text(
+                      'Bienvenido a',
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    ),
+
+                    const SizedBox(height: 4),
+
+                    const Text(
+                      'Movie Archive',
+                      style: TextStyle(
+                        color: azulMarino,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 5),
+
+                    const Text(
+                      'Tu Archivo personal de películas',
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    ),
+
+                    const Text(
+                      'Hello World',
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    ),
+
+                    const SizedBox(height: 18),
+
+                    // Logo
+                    Image.asset(
+                      'assets/images/logo.png',
+                      width: 120,
+                      height: 120,
+                      fit: BoxFit.contain,
+                    ),
+
+                    const SizedBox(height: 65),
+
+                    // Correo
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'CORREO',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 15),
+
+                    TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintText: 'ejemplo@correo.com',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        filled: true,
+                        fillColor: const Color(0xFFEEEEEE),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 18,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // Contraseña
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'CONTRASEÑA',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 15),
+
+                    TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: '*****',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        filled: true,
+                        fillColor: const Color(0xFFEEEEEE),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 18,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 25),
+
+                    // Botón para entrar al catálogo
+                    SizedBox(
+                      width: double.infinity,
+                      height: 62,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CatalogoPage(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: azulMarino,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(9),
+                          ),
+                        ),
+                        child: const Text(
+                          'Iniciar Sesión',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    const Text(
+                      '¿No tienes una cuenta?',
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    ),
+
+                    TextButton(
+                      onPressed: () {
+                      },
+                      child: const Text(
+                        'Regístrate aquí.',
+                        style: TextStyle(
+                          color: Color(0xFF536DFF),
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
-      home: const CatalogoPage(),
     );
   }
 }
@@ -36,33 +225,49 @@ class CatalogoPage extends StatelessWidget {
           children: [
             // Navbar
             Container(
-              height: 48,
               color: azulMarino,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.settings,
-                      color: Colors.white,
-                    ),
+                  // Menú desplegable
+                  PopupMenuButton<String>(
+                    icon: const Icon(Icons.menu, color: Colors.white),
+                    onSelected: (opcion) {
+                      if (opcion == 'cerrar_sesion') {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const InicioPage(),
+                          ),
+                        );
+                      }
+                    },
+                    itemBuilder: (context) => [
+                      const PopupMenuItem<String>(
+                        value: 'cerrar_sesion',
+                        child: Row(
+                          children: [
+                            Icon(Icons.logout, color: azulMarino),
+                            SizedBox(width: 10),
+                            Text('Cerrar sesión'),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
+
                   const Text(
                     'Movie Archive',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
+                    icon: const Icon(Icons.search, color: Colors.white),
                   ),
                 ],
               ),
@@ -74,7 +279,7 @@ class CatalogoPage extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 children: [
                   const Text(
-                    'TODAS LAS PELÍCULAS QUE PUEDES IMAGINAR', // en mayúsculas
+                    'TODAS LAS PELÍCULAS QUE PUEDES IMAGINAR',
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 11,
@@ -122,11 +327,7 @@ class PeliculaCard extends StatefulWidget {
   final String titulo;
   final String imagen;
 
-  const PeliculaCard({
-    super.key,
-    required this.titulo,
-    required this.imagen,
-  });
+  const PeliculaCard({super.key, required this.titulo, required this.imagen});
 
   @override
   State<PeliculaCard> createState() => _PeliculaCardState();
@@ -198,9 +399,7 @@ class _PeliculaCardState extends State<PeliculaCard> {
                       });
                     },
                     icon: Icon(
-                      meGusta
-                          ? Icons.favorite
-                          : Icons.favorite_border,
+                      meGusta ? Icons.favorite : Icons.favorite_border,
                       color: meGusta ? rosa : azulMarino,
                     ),
                   ),
